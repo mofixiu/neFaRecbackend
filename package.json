@@ -1,0 +1,29 @@
+{
+  "name": "nefarec-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env --import tsx --watch src/server.ts",
+    "start": "node --env-file-if-exists=.env --import tsx src/server.ts",
+    "test": "node --import tsx --test test/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "db:initialize": "initdb -D .local/postgres -U nefarec --auth=trust",
+    "db:start": "pg_ctl -D .local/postgres -l .local/postgres.log -o \"-p 5434 -h 127.0.0.1\" start",
+    "db:stop": "pg_ctl -D .local/postgres stop",
+    "db:create": "createdb -h 127.0.0.1 -p 5434 -U nefarec nefarec && createdb -h 127.0.0.1 -p 5434 -U nefarec nefarec_test"
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "jose": "^6.2.15",
+    "pg": "^8.23.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.20.5",
+    "@types/pg": "^8.23.1",
+    "tsx": "^4.23.15",
+    "typescript": "5.9"
+  }
+}
